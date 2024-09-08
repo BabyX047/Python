@@ -1,9 +1,9 @@
 import random
 
 def get_user_choice():
-    user_choice = input("Enter rock, paper, or scissors: ").lower()
-    while user_choice not in ["rock", "paper", "scissors"]:
-        user_choice = input("Invalid choice. Enter rock, paper, or scissors: ").lower()
+    user_choice = input("Enter rock, paper, or scissors or Exit: ").lower()
+    while user_choice not in ["rock", "paper", "scissors", "exit"]:
+        user_choice = input("Invalid choice. Enter rock, paper, or scissors or Exit: ").lower()
     return user_choice
 
 def get_computer_choice():
@@ -23,6 +23,11 @@ def determine_winner(user_choice, computer_choice):
 def play_game():
     while True:
         user_choice = get_user_choice()
+
+        if user_choice == "exit":
+            print("Bye, Bye!\n")
+            break
+
         computer_choice = get_computer_choice()
 
         print(f"\nYou chose {user_choice}, and the computer chose {computer_choice}.\n")
@@ -33,10 +38,8 @@ def play_game():
             print("It's a tie! Let's try again.\n")
         elif result == "user":
             print("You win!")
-            break
         else:
             print("Computer wins!")
-            break
 
 if __name__ == "__main__":
     play_game()
