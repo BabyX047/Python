@@ -21,10 +21,14 @@ def determine_winner(user_choice, computer_choice):
         return "computer"
 
 def play_game():
+    user_score = 0
+    computer_score = 0
+    
     while True:
         user_choice = get_user_choice()
 
         if user_choice == "exit":
+            print(f"Final Scores: You - {user_score}, Computer - {computer_score}\n")
             print("Bye, Bye!\n")
             break
 
@@ -38,8 +42,13 @@ def play_game():
             print("It's a tie! Let's try again.\n")
         elif result == "user":
             print("You win!")
+            user_score += 1
         else:
             print("Computer wins!")
+            computer_score += 1
+
+        print(f"Score: You - {user_score}, Computer - {computer_score}\n")
+
 
 if __name__ == "__main__":
     play_game()
