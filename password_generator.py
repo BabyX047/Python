@@ -46,7 +46,7 @@ def get_password_criteria():
 def main():
     print("Welcome to the Password Generator!")
     
-    # Get the user's password criteria
+    # User's password criteria
     length, use_uppercase, use_digits, use_special_chars = get_password_criteria()
     
     # Generate the password based on the criteria
