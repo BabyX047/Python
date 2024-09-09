@@ -49,7 +49,7 @@ def main():
     # User's password criteria
     length, use_uppercase, use_digits, use_special_chars = get_password_criteria()
     
-    # Generate the password based on the criteria
+    # Generate the password based from criteria
     password = generate_password(length, use_uppercase, use_digits, use_special_chars)
     
     print(f"\nYour generated password is: {password}")
