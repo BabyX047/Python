@@ -12,8 +12,8 @@ def print_board(board):
 def check_win(board, player):
     win_combinations = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],  # Rows
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Columns
-        [0, 4, 8], [2, 4, 6]              # Diagonals
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],   # Columns
+        [0, 4, 8], [2, 4, 6],              # Diagonals
     ]
     for combo in win_combinations:
         if board[combo[0]] == board[combo[1]] == board[combo[2]] == player:
@@ -22,29 +22,31 @@ def check_win(board, player):
 
 # Function to check if the board is full (tie)
 def check_tie(board):
-    return " " not in board
+    return all(space in ['X', 'O'] for space in board)
 
 # Function to handle a player's move
 def player_move(board, player_name, player_symbol):
     while True:
         try:
-            move = int(input(f"{player_name} ({player_symbol}), enter your move (1-9): ")) - 1
-            if move >= 0 and move <= 8 and board[move] == " ":
+            move = int(input(f"{player_name} ({player_symbol}), enter your move (1-9): \n")) - 1
+            if move >= 0 and move <= 8 and board[move] not in ['X', 'O']:
                 board[move] = player_symbol
                 break
             else:
-                print("Invalid move. Please try again.")
+                print("Invalid move. Please try again.\n")
         except ValueError:
-            print("Please enter a number between 1 and 9.")
+            print("Please enter a number between 1 and 9.\n")
 
 # Main function to run the game
 def play_game():
-    # Initial empty board
-    board = [" "] * 9
-    player1_name = input("Please enter Player 1 name: ")
-    player2_name = input("Please enter Player 2 name: ")
+    # Initial board labeled 1 through 9
+    board = [str(i+1) for i in range(9)]
+    
+    player1_name = input("Please enter Player 1 name: \n").upper()
+    player2_name = input("Please enter Player 2 name: \n").upper()
 
-    print(f"Welcome {player1_name}  and {player2_name}  to Tic-Tac-Toe!")
+    print(f"\nHello ( {player1_name} ) and ( {player2_name} )\n")
+    print("Welcome to Tic-Tac-Toe by Lewis")
     print_board(board)
 
     current_player = player1_name
@@ -57,7 +59,7 @@ def play_game():
         
         # Check if the current player has won
         if check_win(board, current_symbol):
-            print(f"Congratulations! {current_player} wins!")
+            print(f"\nCongratulations! {current_player} wins!\n")
             break
         
         # Check if the game is a tie
