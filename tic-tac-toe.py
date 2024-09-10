@@ -44,7 +44,7 @@ def play_game():
     player1_name = input("Please enter Player 1 name: ")
     player2_name = input("Please enter Player 2 name: ")
 
-    print(f"Welcome {player1_name} (X) and {player2_name} (O) to Tic-Tac-Toe!")
+    print(f"Welcome {player1_name}  and {player2_name}  to Tic-Tac-Toe!")
     print_board(board)
 
     current_player = player1_name
@@ -57,7 +57,7 @@ def play_game():
         
         # Check if the current player has won
         if check_win(board, current_symbol):
-            print(f"Congratulations! {current_player} ({current_symbol}) wins!")
+            print(f"Congratulations! {current_player} wins!")
             break
         
         # Check if the game is a tie
