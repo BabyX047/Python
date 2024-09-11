@@ -57,3 +57,43 @@ def sort_array(arr):
     arr.sort()
     print(f"Sorted array: {arr}")
     return arr
+
+
+
+
+
+def main():
+    print("Binary Search Project")
+    
+    while True:
+        # Get the array and target number from user
+        arr, target = get_input()
+        
+        # Sort the array if necessary
+        arr = sort_array(arr)
+        
+        # Ask the user to choose the search method
+        search_method = input("Choose search method: 'iterative' or 'recursive': \n").lower()
+        
+        if search_method == 'iterative':
+            index, steps = binary_search_iterative(arr, target)
+        elif search_method == 'recursive':
+            index, steps = binary_search_recursive(arr, 0, len(arr) - 1, target)
+        else:
+            print("Invalid search method. Please choose 'iterative' or 'recursive'.")
+            continue
+        
+        # Show result
+        if index != -1:
+            print(f"Target found at index {index} in {steps} steps!")
+        else:
+            print(f"Target not found after {steps} steps.")
+        
+        # Ask to search again or exit
+        repeat = input("Do you want to search for another number? (yes/no): \n").lower()
+        if repeat != "yes":
+            print("Thanks for using Binary Search!")
+            break
+
+if __name__ == "__main__":
+    main()
