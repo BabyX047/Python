@@ -114,6 +114,14 @@ def mark_completed(tasks):
     else:
         print("Invalid task number!\n")
 
+def sort_by_priority(tasks):
+    # Assign a numerical value to each priority
+    priority_order = {"high": 1, "medium": 2, "low": 3}
+
+    # Sort the list of tasks based on their priority value
+    tasks.sort(key=lambda task: priority_order[task["priority"]])
+
+
 def main():
     filename = "todo_list.txt"
     tasks = load_tasks(filename)
