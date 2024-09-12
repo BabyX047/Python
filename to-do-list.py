@@ -113,3 +113,38 @@ def mark_completed(tasks):
         tasks[task_num]["status"] = "complete"
     else:
         print("Invalid task number!\n")
+
+def main():
+    filename = "todo_list.txt"
+    tasks = load_tasks(filename)
+    
+    while True:
+        print("To-Do List Application")
+        print("1. View Tasks")
+        print("2. Add Task")
+        print("3. Edit Task")
+        print("4. Remove Task")
+        print("5. Mark Task as Completed")
+        print("6. Save and Exit\n")
+
+        choice = input("Enter your choice (1-6): \n")
+
+        if choice == "1":
+            view_tasks(tasks)
+        elif choice == "2":
+            add_task(tasks)
+        elif choice == "3":
+            edit_task(tasks)
+        elif choice == "4":
+            remove_task(tasks)
+        elif choice == "5":
+            mark_completed(tasks)
+        elif choice == "6":
+            save_tasks(filename, tasks)
+            print("Tasks saved. Goodbye!")
+            break
+        else:
+            print("Invalid choice, please try again.\n")
+
+if __name__ == "__main__":
+    main()
