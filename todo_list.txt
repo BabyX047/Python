@@ -1,2 +1,2 @@
-cook|incomplete|medium
 clean|incomplete|high
+cook|incomplete|medium

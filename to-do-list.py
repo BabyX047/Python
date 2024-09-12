@@ -74,11 +74,13 @@ def save_tasks(filename, tasks):
         for task in tasks:
             file.write(f"{task['task']}|{task['status']}|{task['priority']}\n")
 
+# Function to add a task
 def add_task(tasks):
     task = input("Enter the new task: \n")
     priority = input("Set priority (high/medium/low): \n").lower()
     tasks.append({"task": task, "status": "incomplete", "priority": priority})
 
+# Function to view tasks
 def view_tasks(tasks):
     if not tasks:
         print("Your to-do list is empty!\n")
@@ -87,6 +89,7 @@ def view_tasks(tasks):
             print(f"{i}. {task['task']} [Priority: {task['priority']}] - {task['status']}")
     print("\n")
 
+# Function to edit a task
 def edit_task(tasks):
     view_tasks(tasks)
     task_num = int(input("Enter the task number you want to edit: \n")) - 1
@@ -98,6 +101,7 @@ def edit_task(tasks):
     else:
         print("Invalid task number!\n")
 
+# Function to remove a task
 def remove_task(tasks):
     view_tasks(tasks)
     task_num = int(input("Enter the task number to remove: \n")) - 1
@@ -106,6 +110,7 @@ def remove_task(tasks):
     else:
         print("Invalid task number!\n")
 
+# Function to mark a task as completed
 def mark_completed(tasks):
     view_tasks(tasks)
     task_num = int(input("Enter the task number to mark as completed: \n")) - 1
@@ -114,14 +119,12 @@ def mark_completed(tasks):
     else:
         print("Invalid task number!\n")
 
+# Function to sort tasks by priority
 def sort_by_priority(tasks):
-    # Assign a numerical value to each priority
     priority_order = {"high": 1, "medium": 2, "low": 3}
-
-    # Sort the list of tasks based on their priority value
     tasks.sort(key=lambda task: priority_order[task["priority"]])
 
-
+# Main function
 def main():
     filename = "todo_list.txt"
     tasks = load_tasks(filename)
@@ -133,9 +136,10 @@ def main():
         print("3. Edit Task")
         print("4. Remove Task")
         print("5. Mark Task as Completed")
-        print("6. Save and Exit\n")
+        print("6. Sort Tasks by Priority")
+        print("7. Save and Exit\n")
 
-        choice = input("Enter your choice (1-6): \n")
+        choice = input("Enter your choice (1-7): \n")
 
         if choice == "1":
             view_tasks(tasks)
@@ -148,6 +152,10 @@ def main():
         elif choice == "5":
             mark_completed(tasks)
         elif choice == "6":
+            sort_by_priority(tasks)
+            print("Tasks sorted by priority.\n")
+            view_tasks(tasks)  # Display tasks after sorting
+        elif choice == "7":
             save_tasks(filename, tasks)
             print("Tasks saved. Goodbye!")
             break
