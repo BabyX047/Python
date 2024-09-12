@@ -73,3 +73,43 @@ def save_tasks(filename, tasks):
     with open(filename, "w") as file:
         for task in tasks:
             file.write(f"{task['task']}|{task['status']}|{task['priority']}\n")
+
+def add_task(tasks):
+    task = input("Enter the new task: \n")
+    priority = input("Set priority (high/medium/low): \n").lower()
+    tasks.append({"task": task, "status": "incomplete", "priority": priority})
+
+def view_tasks(tasks):
+    if not tasks:
+        print("Your to-do list is empty!\n")
+    else:
+        for i, task in enumerate(tasks, 1):
+            print(f"{i}. {task['task']} [Priority: {task['priority']}] - {task['status']}")
+    print("\n")
+
+def edit_task(tasks):
+    view_tasks(tasks)
+    task_num = int(input("Enter the task number you want to edit: \n")) - 1
+    if 0 <= task_num < len(tasks):
+        new_task = input("Enter the new task description: \n")
+        new_priority = input("Set new priority (high/medium/low): \n").lower()
+        tasks[task_num]["task"] = new_task
+        tasks[task_num]["priority"] = new_priority
+    else:
+        print("Invalid task number!\n")
+
+def remove_task(tasks):
+    view_tasks(tasks)
+    task_num = int(input("Enter the task number to remove: \n")) - 1
+    if 0 <= task_num < len(tasks):
+        tasks.pop(task_num)
+    else:
+        print("Invalid task number!\n")
+
+def mark_completed(tasks):
+    view_tasks(tasks)
+    task_num = int(input("Enter the task number to mark as completed: \n")) - 1
+    if 0 <= task_num < len(tasks):
+        tasks[task_num]["status"] = "complete"
+    else:
+        print("Invalid task number!\n")
