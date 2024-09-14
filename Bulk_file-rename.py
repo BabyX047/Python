@@ -1,5 +1,35 @@
 import os
 
+# Function to list all files in the given directory
+def list_files_in_directory(directory):
+    """
+    Lists all files in the specified directory.
+    """
+    print(f"\nListing files in directory: {directory}\n")
+    files = os.listdir(directory)
+    if not files:
+        print("The directory is empty.")
+    else:
+        for i, filename in enumerate(files, 1):
+            print(f"{i}. {filename}")
+    print("\n")
+
+# Load tasks from a file
+def load_tasks(filename):
+    tasks = []
+    if os.path.exists(filename):
+        with open(filename, "r") as file:
+            for line in file:
+                task, status, priority = line.strip().split('|')
+                tasks.append({"task": task, "status": status, "priority": priority})
+    return tasks
+
+# Save tasks to a file
+def save_tasks(filename, tasks):
+    with open(filename, "w") as file:
+        for task in tasks:
+            file.write(f"{task['task']}|{task['status']}|{task['priority']}\n")
+
 def rename_files(directory, prefix='', suffix='', replace_str='', new_str='', start_num=None):
     """
     Renames files in a given directory with options for adding prefixes, suffixes, replacing parts of filenames, or numbering.
@@ -46,6 +76,7 @@ def rename_files(directory, prefix='', suffix='', replace_str='', new_str='', st
             os.rename(os.path.join(directory, filename), os.path.join(directory, new_filename))
             print(f'Renamed: {filename} -> {new_filename}')
 
+
 def main():
     print("Bulk File Renamer")
     
@@ -55,6 +86,9 @@ def main():
     if not os.path.exists(directory):
         print("The directory does not exist.")
         return
+
+    # List the files in the directory
+    list_files_in_directory(directory)
     
     # Options for renaming
     print("\nOptions:")
